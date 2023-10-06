@@ -93,7 +93,7 @@ form.addEventListener("submit", function(event) {
         var tr = table.getElementsByTagName("tr");
 
         for (var i = 0; i < tr.length; i++) {
-            tr[i].style.display = ""; // Menampilkan kembali semua baris yang disembunyikan
+            tr[i].style.display = ""; 
         }
     }
 </script>
