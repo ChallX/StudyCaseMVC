@@ -8,8 +8,13 @@
                 <input type="text" class="form-control" id="nama" name="nama" value="<?= $data['pinjam']['nama_peminjam'] ?>">
             </div>
             <div class="form-group mb-3">
-                <label for="penulis">Penulis</label>
-                <input type="text" class="form-control" id="jenis" name="jenis" value="<?= $data['pinjam']['jenis_barang'] ?>">
+                <label for="penulis">Jenis Barang</label>
+                <select class="form-select" name="jenis" id="jenis">
+                <option hidden ><?= $data['pinjam']['jenis_barang'] ?></option>
+                <option value="Laptop">Laptop</option>
+                <option value="Handphone">Handphone</option>
+                <option value="Adaptor LAN">Adaptor LAN</option>
+            </select>
             </div>
             <div class="form-group mb-3">
                 <label for="judul">No Barang</label>

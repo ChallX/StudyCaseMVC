@@ -25,6 +25,9 @@
         </thead>
         <tbody>
             <?php $no=1; ?>
+            <?php date_default_timezone_set('asia/jakarta'); ?>
+
+
             <?php foreach ($data['pinjam'] as $row) :?>
             <tr>
                 <td><?= $no; ?></td>
@@ -34,7 +37,7 @@
                 <td><?= $row['tgl_pinjam']; ?></td>
                 <td><?= $row['tgl_kembali']; ?></td>
                 <td>
-                <?php if ($row['tgl_pinjam'] >=  $row['tgl_kembali']) : ?>
+                <?php if ($row['tgl_pinjam'] >=  $row['tgl_kembali'] || date('Y-m-d H:i:s') >=   $row['tgl_kembali']): ?>
             <span class="badge text-bg-success">Sudah Dikembalikan</span>
         <?php else :?>
             <span class="badge text-bg-danger">Belum Dikembalikan</span>
@@ -42,11 +45,12 @@
     </td>
 
     <td>
-        <?php if ($row['tgl_pinjam'] < $row['tgl_kembali']) : ?>
-            <a href="<?= BASE_URL ?>/pinjam/edit/<?=$row['id'] ?>" class="btn btn-primary">Edit</a>
-        <?php endif; ?>
-
+        <?php if ($row['tgl_pinjam'] >= $row['tgl_kembali'] || date('Y-m-d H:i:s') >=   $row['tgl_kembali']): ?>
+        <a href="<?= BASE_URL ?>/pinjam/hapus/<?=$row['id'] ?>" class="btn btn-danger" onclick="return confirm('Hapus Data?');">Hapus</a>        
+         <?php else: ?>
+        <a href="<?= BASE_URL ?>/pinjam/edit/<?=$row['id'] ?>" class="btn btn-primary">Edit</a>
         <a href="<?= BASE_URL ?>/pinjam/hapus/<?=$row['id'] ?>" class="btn btn-danger" onclick="return confirm('Hapus Data?');">Hapus</a>
+        <?php endif; ?>
     </td>
 </tr>
 <?php $no++; endforeach; ?>
